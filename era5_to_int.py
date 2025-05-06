@@ -478,8 +478,10 @@ if __name__ == '__main__':
     # Set up the two map projections used in the ERA5 fields to be converted
     Gaussian = MapProjection(WPSUtils.Projections.GAUSS,
          89.7848769072, 0.0, 1.0, 1.0, 640.0 / 2.0, 360.0 / 1280.0)
+    # LatLon = MapProjection(WPSUtils.Projections.LATLON,
+    #      90.0, 0.0, 1.0, 1.0, -0.25, 0.25)
     LatLon = MapProjection(WPSUtils.Projections.LATLON,
-         90.0, 0.0, 1.0, 1.0, -0.25, 0.25)
+         -20.0, 144.0, 1.0, 1.0, -0.25, 0.25)
 
     diagnostics = []
     diagnostics.append(SnowDiags())
@@ -491,7 +493,7 @@ if __name__ == '__main__':
 
     int_vars = []
     if args.isobaric:
-        int_vars.append(MetVar('GEOPT', 'Z', 'e5.oper.an.pl.128_129_z.ll025sc.{}_{}.nc', begin_daily, end_daily, LatLon))
+        # int_vars.append(MetVar('GEOPT', 'Z', 'e5.oper.an.pl.128_129_z.ll025sc.{}_{}.nc', begin_daily, end_daily, LatLon))
         int_vars.append(MetVar('SPECHUMD', 'Q', 'e5.oper.an.pl.128_133_q.ll025sc.{}_{}.nc', begin_daily, end_daily, LatLon))
         int_vars.append(MetVar('TT', 'T', 'e5.oper.an.pl.128_130_t.ll025sc.{}_{}.nc', begin_daily, end_daily, LatLon))
         int_vars.append(MetVar('UU', 'U', 'e5.oper.an.pl.128_131_u.ll025uv.{}_{}.nc', begin_daily, end_daily, LatLon))
@@ -514,14 +516,14 @@ if __name__ == '__main__':
     int_vars.append(MetVar('ST100289', 'STL4', 'e5.oper.an.sfc.128_236_stl4.ll025sc.{}_{}.nc', begin_monthly, end_monthly, LatLon))
     int_vars.append(MetVar('SEAICE', 'CI', 'e5.oper.an.sfc.128_031_ci.ll025sc.{}_{}.nc', begin_monthly, end_monthly, LatLon))
     int_vars.append(MetVar('TT', 'VAR_2T', 'e5.oper.an.sfc.128_167_2t.ll025sc.{}_{}.nc', begin_monthly, end_monthly, LatLon))
-    int_vars.append(MetVar('DEWPT', 'VAR_2D', 'e5.oper.an.sfc.128_168_2d.ll025sc.{}_{}.nc', begin_monthly, end_monthly, LatLon))
+    # int_vars.append(MetVar('DEWPT', 'VAR_2D', 'e5.oper.an.sfc.128_168_2d.ll025sc.{}_{}.nc', begin_monthly, end_monthly, LatLon))
     int_vars.append(MetVar('UU', 'VAR_10U', 'e5.oper.an.sfc.128_165_10u.ll025sc.{}_{}.nc', begin_monthly, end_monthly, LatLon))
     int_vars.append(MetVar('VV', 'VAR_10V', 'e5.oper.an.sfc.128_166_10v.ll025sc.{}_{}.nc', begin_monthly, end_monthly, LatLon))
-    int_vars.append(MetVar('SNOW_DEN', 'RSN', 'e5.oper.an.sfc.128_033_rsn.ll025sc.{}_{}.nc', begin_monthly, end_monthly, LatLon))
-    int_vars.append(MetVar('SNOW_EC', 'SD', 'e5.oper.an.sfc.128_141_sd.ll025sc.{}_{}.nc', begin_monthly, end_monthly, LatLon))
+    # int_vars.append(MetVar('SNOW_DEN', 'RSN', 'e5.oper.an.sfc.128_033_rsn.ll025sc.{}_{}.nc', begin_monthly, end_monthly, LatLon))
+    # int_vars.append(MetVar('SNOW_EC', 'SD', 'e5.oper.an.sfc.128_141_sd.ll025sc.{}_{}.nc', begin_monthly, end_monthly, LatLon))
     int_vars.append(MetVar('PMSL', 'MSL', 'e5.oper.an.sfc.128_151_msl.ll025sc.{}_{}.nc', begin_monthly, end_monthly, LatLon))
-    int_vars.append(MetVar('PSFC', 'SP', 'e5.oper.an.ml.128_134_sp.regn320sc.{}_{}.nc', begin_6hourly, end_6hourly, Gaussian))
-    int_vars.append(MetVar('SOILGEO', 'Z', 'e5.oper.invariant.128_129_z.regn320sc.2016010100_2016010100.nc', begin_monthly, end_monthly, Gaussian, isInvariant=True))
+    int_vars.append(MetVar('PSFC', 'SP', 'e5.oper.an.sfc.128_134_sp.ll025sc.{}_{}.nc', begin_monthly, end_monthly, LatLon))
+    # int_vars.append(MetVar('SOILGEO', 'Z', 'e5.oper.invariant.128_172_z.ll025sc.1979010100_1979010100.nc', begin_monthly, end_monthly, LatLon, isInvariant=True))
 
     # WPS variable names in dont_output cause the corresponding field to not be
     #   written to the output intermediate file. This is useful when fields are
